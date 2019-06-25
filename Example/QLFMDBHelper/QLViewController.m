@@ -7,7 +7,7 @@
 //
 
 #import "QLViewController.h"
-
+#import <QLFMDBHelper/QLFMDBHelper.h>
 @interface QLViewController ()
 
 @end
@@ -17,6 +17,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 0, NO).firstObject;
+    [path stringByAppendingPathComponent:@"testDB.sqlite"];
+    [[QLFMDBHelper dbHelper] createWithDBPath:path encryptKey:@"this--is&()00"];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

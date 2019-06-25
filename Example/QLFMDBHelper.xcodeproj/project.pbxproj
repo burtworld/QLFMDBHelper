@@ -43,7 +43,7 @@
 		43AD4C28810D0376ABC92CEC /* Pods_QLFMDBHelper_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QLFMDBHelper_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43DFDA16F25A062037FAB49A /* Pods-QLFMDBHelper_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QLFMDBHelper_Example.debug.xcconfig"; path = "Target Support Files/Pods-QLFMDBHelper_Example/Pods-QLFMDBHelper_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		513CDF68A87264F576FAAA2C /* Pods-QLFMDBHelper_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QLFMDBHelper_Tests.debug.xcconfig"; path = "Target Support Files/Pods-QLFMDBHelper_Tests/Pods-QLFMDBHelper_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		56CFC7DCBEB57C5AE085C446 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		56CFC7DCBEB57C5AE085C446 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* QLFMDBHelper_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QLFMDBHelper_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,8 +65,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9E5069E0D4B4506CF7FD6446 /* QLFMDBHelper.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = QLFMDBHelper.podspec; path = ../QLFMDBHelper.podspec; sourceTree = "<group>"; };
-		E7F47F211DD20FD6C6F04F98 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9E5069E0D4B4506CF7FD6446 /* QLFMDBHelper.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = QLFMDBHelper.podspec; path = ../QLFMDBHelper.podspec; sourceTree = "<group>"; };
+		E7F47F211DD20FD6C6F04F98 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +193,6 @@
 				513CDF68A87264F576FAAA2C /* Pods-QLFMDBHelper_Tests.debug.xcconfig */,
 				161119CB8AE0882E101B9A30 /* Pods-QLFMDBHelper_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -248,6 +247,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Paramita;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 37KDXQK346;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -258,6 +260,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -348,13 +351,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-QLFMDBHelper_Example/Pods-QLFMDBHelper_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/QLFMDBHelper/QLFMDBHelper.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QLFMDBHelper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -498,6 +505,7 @@
 			baseConfigurationReference = 43DFDA16F25A062037FAB49A /* Pods-QLFMDBHelper_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 37KDXQK346;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QLFMDBHelper/QLFMDBHelper-Prefix.pch";
 				INFOPLIST_FILE = "QLFMDBHelper/QLFMDBHelper-Info.plist";
@@ -513,6 +521,7 @@
 			baseConfigurationReference = 1D0D26A5536909EA16D035C7 /* Pods-QLFMDBHelper_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 37KDXQK346;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QLFMDBHelper/QLFMDBHelper-Prefix.pch";
 				INFOPLIST_FILE = "QLFMDBHelper/QLFMDBHelper-Info.plist";

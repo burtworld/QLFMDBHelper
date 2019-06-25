@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint QLFMDBHelper.podspec' to ensure this is a
+# Be sure to run `pod lib lint QLSqliterHelper.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'QLFMDBHelper'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of QLFMDBHelper.'
+  s.summary          = 'A sqlite wrap base on FMDB'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,15 +17,13 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'easier to use sqlite and resolve ORM'
 
-  s.homepage         = 'https://github.com/Paramita/QLFMDBHelper'
+  s.homepage         = 'https://github.com/burtworld/QLFMDBHelper'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Paramita' => 'baqkoo007@aliyun.com' }
-  s.source           = { :git => 'https://github.com/Paramita/QLFMDBHelper.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/burtworld/QLFMDBHelper.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -33,10 +31,10 @@ TODO: Add long description of the pod here.
   s.source_files = 'QLFMDBHelper/Classes/**/*'
   
   # s.resource_bundles = {
-  #   'QLFMDBHelper' => ['QLFMDBHelper/Assets/*.png']
+  #   'QLSqliterHelper' => ['QLFMDBHelper/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'Security'
+  s.dependency 'FMDB/SQLCipher', '~>  2.7.5'
 end

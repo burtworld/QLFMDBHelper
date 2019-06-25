@@ -1,0 +1,31 @@
+PODS:
+  - FMDB/SQLCipher (2.7.5):
+    - SQLCipher
+  - QLFMDBHelper (0.1.0):
+    - FMDB/SQLCipher (~> 2.7.5)
+  - SQLCipher (4.2.0):
+    - SQLCipher/standard (= 4.2.0)
+  - SQLCipher/common (4.2.0)
+  - SQLCipher/standard (4.2.0):
+    - SQLCipher/common
+
+DEPENDENCIES:
+  - QLFMDBHelper (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FMDB
+    - SQLCipher
+
+EXTERNAL SOURCES:
+  QLFMDBHelper:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  QLFMDBHelper: d93475df2eda5c16803d493c8f8a80320bab9da3
+  SQLCipher: 0187a2180ac288ea686b670b7141da62cd013b16
+
+PODFILE CHECKSUM: 21f1479aece4e1c30c8c5cb1c40376f002486e72
+
+COCOAPODS: 1.6.1

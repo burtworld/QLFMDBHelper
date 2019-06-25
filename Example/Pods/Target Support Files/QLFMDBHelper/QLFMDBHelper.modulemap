@@ -1,0 +1,6 @@
+framework module QLFMDBHelper {
+  umbrella header "QLFMDBHelper-umbrella.h"
+
+  export *
+  module * { export * }
+}

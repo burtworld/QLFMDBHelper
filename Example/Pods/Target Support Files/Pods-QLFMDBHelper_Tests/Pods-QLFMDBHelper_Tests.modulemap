@@ -1,0 +1,6 @@
+framework module Pods_QLFMDBHelper_Tests {
+  umbrella header "Pods-QLFMDBHelper_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
