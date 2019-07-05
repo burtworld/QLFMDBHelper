@@ -12,10 +12,19 @@
 @implementation QLFMDBHelper
 
 + (instancetype)dbHelper {
-    static QLFMDBHelper * sqliterHelp = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sqliterHelp = [QLFMDBHelper new];
+    static id sqliterHelp = nil;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        sqliterHelp = [[[self class] alloc] init];
+    });
+    return sqliterHelp;
+}
+
++ (instancetype)sqliterHelper {
+    static id sqliterHelp = nil;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        sqliterHelp = [[[self class] alloc] init];
     });
     return sqliterHelp;
 }

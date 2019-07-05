@@ -15,6 +15,9 @@
 @property (nonatomic, retain) FMDatabaseQueue *dbQueue;
 
 + (instancetype)dbHelper;
+/// adapt to pre version
++ (instancetype)sqliterHelper;
+
 - (instancetype)createWithDBPath:(NSString *)dbPath encryptKey:(NSString *)enKey;
 
 - (void)createTables;
