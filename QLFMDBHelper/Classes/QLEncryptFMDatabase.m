@@ -22,6 +22,10 @@ static NSString * _encryptKey;
     _encryptKey = encryptKey;
 }
 
++ (NSString *)getEncryptKey {
+    return _encryptKey;
+}
+
 + (id)databaseWithPath:(NSString *)inPath encrytKey:(NSString *)encrytKey {
     return [[[self class] alloc] initWithPath:inPath encrytKey:encrytKey];
 }

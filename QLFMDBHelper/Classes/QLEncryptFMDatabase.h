@@ -10,5 +10,6 @@
 
 @interface QLEncryptFMDatabase : FMDatabase
 + (void)setEncryptKey:(NSString *)encryptKey;
++ (NSString *)getEncryptKey;
 @end
 

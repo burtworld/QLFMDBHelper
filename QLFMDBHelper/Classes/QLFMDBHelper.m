@@ -6,7 +6,11 @@
 //
 
 #import "QLFMDBHelper.h"
-
+#if FMDB_SQLITE_STANDALONE
+#import <sqlite3/sqlite3.h>
+#else
+#import <sqlite3.h>
+#endif
 
 
 @implementation QLFMDBHelper
@@ -52,7 +56,7 @@
 }
 
 - (BOOL)openDB {
-    //    if (![db open]) {
+//        if (![db open]) {
     //        NSLog(@"open db failed.");
     //        return NO;
     //    }
@@ -92,5 +96,36 @@
         }];
     }
     return hasRecords;
+}
+
+- (void)exportEncryptDBPath:(NSString *)enPath plainDBPath:(NSString *)plainPath {
+    const char *sql = [[NSString stringWithFormat:@"ATTACH DATABASE '%@' AS encrypted KEY '%@';", enPath, [[self.dbQueue class] getEncryptKey]] UTF8String];
+
+    const char *exportSql = [[NSString stringWithFormat:@"SELECT sqlcipher_export('encrypted');"] UTF8String];
+
+    const char *detachSql = [[NSString stringWithFormat:@"DETACH DATABASE encrypted;"] UTF8String];
+
+    sqlite3 *unencrypted_DB = NULL;
+
+    if(sqlite3_open([plainPath UTF8String], &unencrypted_DB) ==SQLITE_OK)
+    {
+        int rc;
+
+        char *errmsg = NULL;
+
+        rc =sqlite3_exec(unencrypted_DB, sql,NULL,NULL, &errmsg);
+
+        rc =sqlite3_exec(unencrypted_DB, exportSql,NULL,NULL, &errmsg);
+
+        rc =sqlite3_exec(unencrypted_DB, detachSql,NULL,NULL, &errmsg);
+
+        sqlite3_close(unencrypted_DB);
+
+    }
+    else
+    {
+        sqlite3_close(unencrypted_DB);
+        NSAssert1(NO,@"Failed to open database with message '%s'.", sqlite3_errmsg(unencrypted_DB));
+    }
 }
 @end

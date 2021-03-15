@@ -27,5 +27,8 @@
 
 //! 判断是否存在表
 - (BOOL) isTableOK:(NSString *)tableName;
+
+/// 导出数据库
+- (void)exportEncryptDBPath:(NSString *)enPath plainDBPath:(NSString *)plainPath;
 @end
 
