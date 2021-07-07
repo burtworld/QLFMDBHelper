@@ -99,33 +99,29 @@
 }
 
 - (void)exportEncryptDBPath:(NSString *)enPath plainDBPath:(NSString *)plainPath {
-    const char *sql = [[NSString stringWithFormat:@"ATTACH DATABASE '%@' AS encrypted KEY '%@';", enPath, [[self.dbQueue class] getEncryptKey]] UTF8String];
+    
+    const char *sql = [[NSString stringWithFormat:@"PRAGMA key = '%@';", [QLEncryptFMDatabase getEncryptKey]] UTF8String];
+    const char *attachSql = [[NSString stringWithFormat:@"ATTACH DATABASE '%@' AS plaintext KEY '';", plainPath] UTF8String];
+    const char *exportSql = [[NSString stringWithFormat:@"SELECT sqlcipher_export('plaintext');"] UTF8String];
+    const char *detachSql = [[NSString stringWithFormat:@"DETACH DATABASE plaintext;"] UTF8String];
 
-    const char *exportSql = [[NSString stringWithFormat:@"SELECT sqlcipher_export('encrypted');"] UTF8String];
+    sqlite3*encrypted_DB =NULL;
 
-    const char *detachSql = [[NSString stringWithFormat:@"DETACH DATABASE encrypted;"] UTF8String];
-
-    sqlite3 *unencrypted_DB = NULL;
-
-    if(sqlite3_open([plainPath UTF8String], &unencrypted_DB) ==SQLITE_OK)
+    if(sqlite3_open([enPath UTF8String], &encrypted_DB) ==SQLITE_OK)
     {
         int rc;
-
         char *errmsg = NULL;
-
-        rc =sqlite3_exec(unencrypted_DB, sql,NULL,NULL, &errmsg);
-
-        rc =sqlite3_exec(unencrypted_DB, exportSql,NULL,NULL, &errmsg);
-
-        rc =sqlite3_exec(unencrypted_DB, detachSql,NULL,NULL, &errmsg);
-
-        sqlite3_close(unencrypted_DB);
+        rc = sqlite3_exec(encrypted_DB, sql,NULL,NULL, &errmsg);
+        rc =sqlite3_exec(encrypted_DB, attachSql,NULL,NULL, &errmsg);
+        rc =sqlite3_exec(encrypted_DB, exportSql,NULL,NULL, &errmsg);
+        rc =sqlite3_exec(encrypted_DB, detachSql,NULL,NULL, &errmsg);
+        sqlite3_close(encrypted_DB);
 
     }
     else
     {
-        sqlite3_close(unencrypted_DB);
-        NSAssert1(NO,@"Failed to open database with message '%s'.", sqlite3_errmsg(unencrypted_DB));
+        sqlite3_close(encrypted_DB);
+        NSAssert1(NO,@"Failed to open database with message '%s'.", sqlite3_errmsg(encrypted_DB));
     }
 }
 @end
